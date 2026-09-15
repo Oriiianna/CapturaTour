@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Capturas full-page (desktop/tablet/mobile) en WebP, vía web app (Vercel) o CLI local",
   "main": "screenshot.js",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "shot": "node screenshot.js"
   },

@@ -5,11 +5,18 @@
  * Respuesta: application/zip con <slug>-desktop.webp, <slug>-tablet.webp, <slug>-mobile.webp
  */
 
-const chromium = require("@sparticuz/chromium");
 const { chromium: pw } = require("playwright-core");
 const sharp = require("sharp");
-const archiver = require("archiver");
 const { VIEWPORTS, slugFromUrl, capturePngBuffer } = require("../lib/capture");
+
+// @sparticuz/chromium y archiver (v8+) son paquetes ESM-only (sin build
+// CommonJS), así que se cargan con import() dinámico desde este módulo CJS.
+function loadChromium() {
+  return import("@sparticuz/chromium").then((m) => m.default);
+}
+function loadZipArchive() {
+  return import("archiver").then((m) => m.ZipArchive);
+}
 
 function isValidUrl(value) {
   try {
@@ -46,6 +53,8 @@ module.exports = async (req, res) => {
 
   let browser;
   try {
+    const chromium = await loadChromium();
+
     browser = await pw.launch({
       args: chromium.args,
       executablePath: await chromium.executablePath(),
@@ -63,7 +72,8 @@ module.exports = async (req, res) => {
     res.setHeader("Content-Type", "application/zip");
     res.setHeader("Content-Disposition", `attachment; filename="${slug}.zip"`);
 
-    const archive = archiver("zip", { zlib: { level: 9 } });
+    const ZipArchive = await loadZipArchive();
+    const archive = new ZipArchive({ zlib: { level: 9 } });
     archive.on("error", (err) => {
       throw err;
     });
