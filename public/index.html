@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capturador de Proyectos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>📸 Capturador de Proyectos</h1>
+    <p class="subtitle">
+      Ingresá la URL de un sitio y generá capturas full-page en desktop, tablet
+      y mobile, en formato WebP, listas para descargar en un .zip.
+    </p>
+
+    <form id="capture-form">
+      <label for="url">URL del sitio</label>
+      <input type="url" id="url" name="url" placeholder="https://tusitio.com" required />
+
+      <label for="projectName">Nombre del proyecto</label>
+      <input type="text" id="projectName" name="projectName" placeholder="mi-proyecto" required />
+
+      <button type="submit" id="submit-btn">Generar capturas</button>
+    </form>
+
+    <p id="status" class="status" hidden></p>
+    <p id="error" class="error" hidden></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

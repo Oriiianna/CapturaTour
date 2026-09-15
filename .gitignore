@@ -1,0 +1,7 @@
+node_modules/
+capturas/
+capturas-test/
+.vercel/
+.env
+.env.local
+*.log
