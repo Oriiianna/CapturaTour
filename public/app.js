@@ -43,6 +43,10 @@ form.addEventListener("submit", async (event) => {
       try {
         const data = await response.json();
         if (data.error) message = data.error;
+        if (data.detail) {
+          message += ` (${data.detail})`;
+          console.error("Detalle del error:", data.detail);
+        }
       } catch (e) {}
       throw new Error(message);
     }

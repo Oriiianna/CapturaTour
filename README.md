@@ -10,12 +10,26 @@ como **CLI local** (para uso rápido desde la terminal, genera PNG en disco).
 
 ## Web app (uso principal)
 
-1. Entrá a la URL donde esté deployada la app (ver "Deploy en Vercel" más abajo).
+1. Entrá a la URL de la app (local o deployada).
 2. Completá la **URL del sitio** y un **nombre de proyecto**.
 3. Al enviar, el backend genera las 3 capturas (desktop/tablet/mobile) en WebP y
    descarga automáticamente un `<nombre-proyecto>.zip` con las 3 imágenes adentro.
 4. La generación puede tardar 15–40 segundos (carga real de la página + scroll +
-   conversión + zip), especialmente en cold start.
+   conversión + zip), más en Vercel durante un cold start.
+
+### Probar en local (recomendado antes de deployar)
+
+```bash
+npm install
+npx playwright install chromium   # una sola vez, Chromium de escritorio
+npm run dev
+```
+
+Abrí `http://localhost:3000`. El servidor local (`dev-server.js`) usa el mismo
+código de captura/zip que la función de Vercel (`lib/respondWithZip.js`), pero
+lanza el Chromium de escritorio de Playwright en vez de `@sparticuz/chromium`
+(que es un binario Linux-only y no corre en Windows/Mac de escritorio). Esto
+permite iterar rápido y ver errores reales sin depender de un deploy.
 
 ### Deploy en Vercel
 

@@ -7,7 +7,8 @@
     "node": "22.x"
   },
   "scripts": {
-    "shot": "node screenshot.js"
+    "shot": "node screenshot.js",
+    "dev": "node dev-server.js"
   },
   "dependencies": {
     "playwright-core": "1.63.0",
@@ -16,6 +17,7 @@
     "archiver": "8.0.0"
   },
   "devDependencies": {
-    "playwright": "^1.63.0"
+    "playwright": "^1.63.0",
+    "express": "^5.2.1"
   }
 }
