@@ -67,7 +67,7 @@ node screenshot.js https://tusitio.com
 ```
 
 Esto genera 3 archivos PNG en `./capturas`:
-- `tusitio-com-desktop.png` (1920×1080)
+- `tusitio-com-desktop.png` (1440×900)
 - `tusitio-com-tablet.png` (768×1024)
 - `tusitio-com-mobile.png` (390×844)
 
